@@ -17,7 +17,7 @@ const CommonForm = ({formControls, formData, setFormData, onSubmit, buttonText})
         const value = formData[getControlItem.name] || ''
         switch (getControlItem.componentType) {
             case 'input':
-                (element = <Input 
+                element = <Input 
                 name = {getControlItem.name}
                 palceholder = {getControlItem.palceholder}
                 id = {getControlItem.name}
@@ -27,10 +27,10 @@ const CommonForm = ({formControls, formData, setFormData, onSubmit, buttonText})
                     ...formData,
                     [getControlItem.name] : event.target.value
                 })}
-                ></Input>)
+                ></Input>
                 break;
             case 'select':
-                (element = <Select onValueChange={(value => setFormData({
+                element = <Select onValueChange={(value => setFormData({
                     ...formData,
                     [getControlItem.name] : value
                 }))} value={value}>
@@ -45,10 +45,10 @@ const CommonForm = ({formControls, formData, setFormData, onSubmit, buttonText})
                        }
                     </SelectContent>
 
-                </Select>)
+                </Select>
                 break;
             case 'textarea':
-                (element = <Textarea 
+                element = <Textarea 
                     name={getControlItem.name}
                     placeholder={getControlItem.placeholder}
                     id={getControlItem.id}
@@ -57,7 +57,7 @@ const CommonForm = ({formControls, formData, setFormData, onSubmit, buttonText})
                         ...formData,
                         [getControlItem.name] : event.target.value
                     })}
-                />)
+                />
                 break;
         
             default: 
