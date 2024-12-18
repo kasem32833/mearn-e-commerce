@@ -19,23 +19,34 @@ const AuthRegister = () => {
   const navigate = useNavigate();
   const {toast} = useToast()
   // onsubmit function
-  function onSubmit(event){
-    event.preventDefault();
-    dispatch(registerUser(formData)).then((data)=> {
-      if(data?.payload?.success){
-        navigate('/auth/login')
-        toast({
-          title: data?.payload?.message
-        })
-      }else{
-        toast({
-          title: data?.payload?.message,
-          variant: "destructive"
-        })
-      }
+   function onSubmit (event ){
+    event.preventDefault()
 
-    })
-  }
+    try {
+      dispatch(registerUser(formData)).then((data)=>{
+        console.log(data);
+        if(data?.payload?.success){
+          navigate('/auth/login')
+          toast({
+            title: data?.payload?.message
+          })
+        }else{
+          toast({
+            title: data?.payload?.message,
+            variant: "destructive"
+          })
+        }
+      })
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: error?.message,
+        variant: "destructive"
+      })
+    }
+  } 
+
+
   return (
     <div className='mx-auto max-w-md w-full space-y-6'>
       <div className='text-center'>

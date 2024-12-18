@@ -15,15 +15,18 @@ import ShopingAccount from "./pages/shopping-view/account";
 import ShopingHome from "./pages/shopping-view/home";
 import CheckAuth from "./components/common/check-auth";
 import UnAuth from "./pages/un-auth";
+import { useSelector } from "react-redux";
 
 function App() {
 
+  const {user, isAuthenticated, isLoadin} = useSelector(state.action.payload)
 
-  const isAuthenticated = false;
-  const user =  {
-    name: "abul",
-    role: "user"
-  }
+
+  // const isAuthenticated = false;
+  // const user =  {
+  //   name: "abul",
+  //   role: "user"
+  // }
 
 
   return (
