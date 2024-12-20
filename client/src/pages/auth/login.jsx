@@ -4,7 +4,7 @@ import { toast } from '@/hooks/use-toast';
 import { loginUser } from '@/store/auth-slice';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { Link, data, useNavigate, useNavigation } from 'react-router-dom'
+import { Link, useNavigate,  } from 'react-router-dom'
 
 
 const initialState = {
@@ -22,11 +22,19 @@ const AuthLogin = () => {
   function onSubmit(event){
     event.preventDefault();
     dispatch(loginUser(formData)).then((data)=>{
-      toast({
-        title: data?.payload?.message
-      })
       if(data?.payload?.success){
-        navigate("shop/home")
+        toast({
+          title: data?.payload?.message
+        })
+      }else{
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive"
+        })
+      }
+    
+      if(data?.payload?.success){
+        navigate("/shop/home")
       }
       })
   }

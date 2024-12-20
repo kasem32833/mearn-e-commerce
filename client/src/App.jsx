@@ -15,11 +15,14 @@ import ShopingAccount from "./pages/shopping-view/account";
 import ShopingHome from "./pages/shopping-view/home";
 import CheckAuth from "./components/common/check-auth";
 import UnAuth from "./pages/un-auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from "./store/auth-slice";
 
 function App() {
 
-  const {user, isAuthenticated, isLoadin} = useSelector(state.action.payload)
+  const {user, isAuthenticated, isLoadin} = useSelector(state=> state.auth)
+  const dispatch = useDispatch()
 
 
   // const isAuthenticated = false;
@@ -27,7 +30,10 @@ function App() {
   //   name: "abul",
   //   role: "user"
   // }
-
+    
+useEffect(()=>{
+  dispatch(checkAuth());
+}, [dispatch]);
 
   return (
     <div className="flex flex-col overflow-hidden bg-white">
